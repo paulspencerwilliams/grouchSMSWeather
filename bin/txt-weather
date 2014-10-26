@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
-require 'GrouchSMSWeather'
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../lib")
+require 'grouchSMSWeather'
 GrouchSMSWeather::CLI.start(ARGV)
