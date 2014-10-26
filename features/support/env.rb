@@ -4,6 +4,7 @@ require 'aruba/in_process'
 require 'vcr'
 require 'webmock'
 require 'grouchSMSWeather'
+require 'webmock/cucumber'
 
 VCR.cucumber_tags do |t|
   t.tag  '@vcr', :use_scenario_name => true

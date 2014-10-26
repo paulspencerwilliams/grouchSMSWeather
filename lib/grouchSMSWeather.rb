@@ -12,10 +12,11 @@ module GrouchSMSWeather
         weather = JSON.parse(tempfile.read)
         tempfile.close
         tempfile.unlink
-        summary = { :summary => weather["currently"]["summary"],
-                    :temperature => weather["currently"]["temperature"]}
+        summary = weather["currently"]["summary"]
+        temperature = weather["currently"]["temperature"] 
+        message = "It is #{temperature} degrees and #{summary}"
         api = Clockwork::API.new( '8dc497a757dcadd07faef21f816b67135bd7aef0' )
-        message = api.messages.build( :to => user["phone"], :content => summary.to_s)
+        message = api.messages.build( :to => user["phone"], :content => message)
         response = message.deliver
 
         if response.success

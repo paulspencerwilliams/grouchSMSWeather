@@ -3,7 +3,15 @@ Feature: as a user interested in receiving nonsense text messages, when a cron j
   @vcr
   Scenario: Happy path
     When I run `txt-weather`
-    Then the output should contain:
+    Then a text message with following content should be sent:
     """
-    [{"id":1,"email":"asd","created_at":"2014-10-25T23:16:35.201Z","updated_at":"2014-10-25T23:16:35.201Z","phone":"1.1","weather":true,"latitude":1.2,"longitude":null}]
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Message>
+      <Key>8dc497a757dcadd07faef21f816b67135bd7aef0</Key>
+      <SMS>
+        <Content>{:summary=&gt;"Mostly Cloudy", :temperature=&gt;62.7}</Content>
+        <To>07590389430</To>
+        <WrapperID>0</WrapperID>
+      </SMS>
+    </Message>
     """  
