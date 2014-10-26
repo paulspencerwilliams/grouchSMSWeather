@@ -28,13 +28,15 @@ module GrouchSMSWeather
 
   class Shifter
     def shift user
+      user["latitude"] = 0 - user["latitude"]
+      user["longitude"] = 180 + user["longitude"]
       user
     end
   end
 
   class WeatherService
     def get_weather user
-      tempfile = open('https://api.forecast.io/forecast/6f15402c3185b14d36a9249c1c4353a6/37.8267,-122.423') 
+      tempfile = open("https://api.forecast.io/forecast/6f15402c3185b14d36a9249c1c4353a6/#{user['latitude']},#{user['longitude']}") 
       weather = JSON.parse(tempfile.read)
       tempfile.close
       tempfile.unlink
@@ -43,11 +45,13 @@ module GrouchSMSWeather
       user
     end
   end
+
   class MessageFactory
     def create user
       { :message => "It is #{user[:temperature]} degrees and #{user[:summary]}", :to => user["phone"]} 
     end
   end
+
   class SMSService
     def send message
       api = Clockwork::API.new( '8dc497a757dcadd07faef21f816b67135bd7aef0' )
