@@ -48,7 +48,7 @@ module GrouchSMSWeather
 
   class MessageFactory
     def create user
-      { :message => "It is #{user[:temperature]} degrees and #{user[:summary]}", :to => user["phone"]} 
+      { :message => "It is #{user[:temperature]} degrees and #{user[:summary]}, on the other side of the world!!!", :to => user["phone"]} 
     end
   end
 
