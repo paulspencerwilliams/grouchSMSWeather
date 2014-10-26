@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'GrouchSMSWeather'
+GrouchSMSWeather::CLI.start(ARGV)
