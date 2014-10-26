@@ -4,5 +4,5 @@ Feature: as a user interested in receiving nonsense text messages, when a cron j
     When I run `txt-weather`
     Then the output should contain:
     """
-    some advice
+    [{"id":1,"email":"asd","created_at":"2014-10-25T23:16:35.201Z","updated_at":"2014-10-25T23:16:35.201Z","phone":"1.1","weather":true,"latitude":1.2,"longitude":null}]
     """  
